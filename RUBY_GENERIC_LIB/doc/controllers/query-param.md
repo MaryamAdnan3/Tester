@@ -129,7 +129,7 @@ def unix_date_time_array(datetimes)
 ## Example Usage
 
 ```ruby
-datetimes = [Time.at(1480809600).utc.to_datetime, Time.at(1480809600).utc.to_datetime, Time.at(1480809600).utc.to_datetime]
+datetimes = [DateTimeHelper.from_unix(1480809600), DateTimeHelper.from_unix(1480809600), DateTimeHelper.from_unix(1480809600)]
 
 result = query_param_controller.unix_date_time_array(datetimes)
 ```
@@ -154,7 +154,7 @@ def unix_date_time(datetime)
 ## Example Usage
 
 ```ruby
-datetime = Time.at(1480809600).utc.to_datetime
+datetime = DateTimeHelper.from_unix(1480809600)
 
 result = query_param_controller.unix_date_time(datetime)
 ```
@@ -179,7 +179,7 @@ def rfc1123_date_time(datetime)
 ## Example Usage
 
 ```ruby
-datetime = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+datetime = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 
 result = query_param_controller.rfc1123_date_time(datetime)
 ```
@@ -204,7 +204,7 @@ def rfc1123_date_time_array(datetimes)
 ## Example Usage
 
 ```ruby
-datetimes = [DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT'), DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT'), DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')]
+datetimes = [DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT'), DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT'), DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')]
 
 result = query_param_controller.rfc1123_date_time_array(datetimes)
 ```
@@ -229,7 +229,7 @@ def rfc3339_date_time_array(datetimes)
 ## Example Usage
 
 ```ruby
-datetimes = [DateTime.rfc3339('2016-03-13T12:52:32.123Z'), DateTime.rfc3339('2016-03-13T12:52:32.123Z'), DateTime.rfc3339('2016-03-13T12:52:32.123Z')]
+datetimes = [DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z'), DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z'), DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')]
 
 result = query_param_controller.rfc3339_date_time_array(datetimes)
 ```
@@ -254,7 +254,7 @@ def rfc3339_date_time(datetime)
 ## Example Usage
 
 ```ruby
-datetime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+datetime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 
 result = query_param_controller.rfc3339_date_time(datetime)
 ```

@@ -154,8 +154,8 @@ def rfc1123_datetime_as_optional(date_time,
 ## Example Usage
 
 ```ruby
-date_time = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
-date_time1 = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
+date_time = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
+date_time1 = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
 
 result = query_params_controller.rfc1123_datetime_as_optional(date_time, date_time1: date_time1)
 ```
@@ -182,8 +182,8 @@ def rfc3339_datetime_as_optional(date_time,
 ## Example Usage
 
 ```ruby
-date_time = DateTime.rfc3339('1994-02-13 14:01:54')
-date_time1 = DateTime.rfc3339('1994-02-13 14:01:54')
+date_time = DateTimeHelper.from_rfc3339('1994-02-13 14:01:54')
+date_time1 = DateTimeHelper.from_rfc3339('1994-02-13 14:01:54')
 
 result = query_params_controller.rfc3339_datetime_as_optional(date_time, date_time1: date_time1)
 ```
@@ -266,8 +266,8 @@ def unixdatetime_as_optional(date_time,
 ## Example Usage
 
 ```ruby
-date_time = Time.at(1484719381).utc.to_datetime
-date_time1 = Time.at(1484719381).utc.to_datetime
+date_time = DateTimeHelper.from_unix(1484719381)
+date_time1 = DateTimeHelper.from_unix(1484719381)
 
 result = query_params_controller.unixdatetime_as_optional(date_time, date_time1: date_time1)
 ```

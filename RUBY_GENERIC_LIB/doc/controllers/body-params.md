@@ -182,7 +182,7 @@ def send_unix_date_time(datetime)
 ## Example Usage
 
 ```ruby
-datetime = Time.at(1480809600).utc.to_datetime
+datetime = DateTimeHelper.from_unix(1480809600)
 
 result = body_params_controller.send_unix_date_time(datetime)
 ```
@@ -207,7 +207,7 @@ def send_rfc1123_date_time(datetime)
 ## Example Usage
 
 ```ruby
-datetime = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+datetime = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 
 result = body_params_controller.send_rfc1123_date_time(datetime)
 ```
@@ -232,7 +232,7 @@ def send_rfc3339_date_time(datetime)
 ## Example Usage
 
 ```ruby
-datetime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+datetime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 
 result = body_params_controller.send_rfc3339_date_time(datetime)
 ```
@@ -257,7 +257,7 @@ def send_unix_date_time_array(datetimes)
 ## Example Usage
 
 ```ruby
-datetimes = [Time.at(1480809600).utc.to_datetime, Time.at(1480809600).utc.to_datetime, Time.at(1480809600).utc.to_datetime]
+datetimes = [DateTimeHelper.from_unix(1480809600), DateTimeHelper.from_unix(1480809600), DateTimeHelper.from_unix(1480809600)]
 
 result = body_params_controller.send_unix_date_time_array(datetimes)
 ```
@@ -282,7 +282,7 @@ def send_rfc1123_date_time_array(datetimes)
 ## Example Usage
 
 ```ruby
-datetimes = [DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT'), DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT'), DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')]
+datetimes = [DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT'), DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT'), DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')]
 
 result = body_params_controller.send_rfc1123_date_time_array(datetimes)
 ```
@@ -307,7 +307,7 @@ def send_rfc3339_date_time_array(datetimes)
 ## Example Usage
 
 ```ruby
-datetimes = [DateTime.rfc3339('2016-03-13T12:52:32.123Z'), DateTime.rfc3339('2016-03-13T12:52:32.123Z'), DateTime.rfc3339('2016-03-13T12:52:32.123Z')]
+datetimes = [DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z'), DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z'), DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')]
 
 result = body_params_controller.send_rfc3339_date_time_array(datetimes)
 ```
@@ -535,18 +535,18 @@ model.dependents[0] = Person.new
 model.dependents[0].address = 'address5'
 model.dependents[0].age = 237
 model.dependents[0].birthday = Date.iso8601('2016-03-13')
-model.dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+model.dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 model.dependents[0].name = 'name9'
 model.dependents[0].uid = 'uid9'
 
-model.hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+model.hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 model.joining_day = Days::MONDAY
 model.salary = 240
 model.working_days = [Days::THURSDAY, Days::WEDNESDAY_, Days::TUESDAY]
 model.address = 'address8'
 model.age = 186
 model.birthday = Date.iso8601('2016-03-13')
-model.birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+model.birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 model.name = 'name2'
 model.uid = 'uid2'
 
@@ -585,7 +585,7 @@ models[0].dependents[0] = Person.new
 models[0].dependents[0].address = 'address9'
 models[0].dependents[0].age = 49
 models[0].dependents[0].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[0].name = 'name3'
 models[0].dependents[0].uid = 'uid3'
 
@@ -593,7 +593,7 @@ models[0].dependents[1] = Person.new
 models[0].dependents[1].address = 'address0'
 models[0].dependents[1].age = 50
 models[0].dependents[1].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[1].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[1].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[1].name = 'name4'
 models[0].dependents[1].uid = 'uid4'
 
@@ -601,18 +601,18 @@ models[0].dependents[2] = Person.new
 models[0].dependents[2].address = 'address1'
 models[0].dependents[2].age = 51
 models[0].dependents[2].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[2].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[2].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[2].name = 'name5'
 models[0].dependents[2].uid = 'uid5'
 
-models[0].hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+models[0].hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 models[0].joining_day = Days::MONDAY
 models[0].salary = 84
 models[0].working_days = [Days::SUNDAY]
 models[0].address = 'address2'
 models[0].age = 254
 models[0].birthday = Date.iso8601('2016-03-13')
-models[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].name = 'name6'
 models[0].uid = 'uid6'
 
@@ -625,18 +625,18 @@ models[1].dependents[0] = Person.new
 models[1].dependents[0].address = 'address0'
 models[1].dependents[0].age = 50
 models[1].dependents[0].birthday = Date.iso8601('2016-03-13')
-models[1].dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[1].dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[1].dependents[0].name = 'name4'
 models[1].dependents[0].uid = 'uid4'
 
-models[1].hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+models[1].hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 models[1].joining_day = Days::MONDAY
 models[1].salary = 85
 models[1].working_days = [Days::MONDAY, Days::TUESDAY]
 models[1].address = 'address3'
 models[1].age = 255
 models[1].birthday = Date.iso8601('2016-03-13')
-models[1].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[1].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[1].name = 'name7'
 models[1].uid = 'uid7'
 
@@ -773,18 +773,18 @@ model.dependents[0] = Person.new
 model.dependents[0].address = 'address5'
 model.dependents[0].age = 237
 model.dependents[0].birthday = Date.iso8601('2016-03-13')
-model.dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+model.dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 model.dependents[0].name = 'name9'
 model.dependents[0].uid = 'uid9'
 
-model.hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+model.hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 model.joining_day = Days::MONDAY
 model.salary = 240
 model.working_days = [Days::THURSDAY, Days::WEDNESDAY_, Days::TUESDAY]
 model.address = 'address8'
 model.age = 186
 model.birthday = Date.iso8601('2016-03-13')
-model.birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+model.birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 model.name = 'name2'
 model.uid = 'uid2'
 
@@ -820,18 +820,18 @@ model.dependents[0] = Person.new
 model.dependents[0].address = 'address5'
 model.dependents[0].age = 237
 model.dependents[0].birthday = Date.iso8601('2016-03-13')
-model.dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+model.dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 model.dependents[0].name = 'name9'
 model.dependents[0].uid = 'uid9'
 
-model.hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+model.hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 model.joining_day = Days::MONDAY
 model.salary = 240
 model.working_days = [Days::THURSDAY, Days::WEDNESDAY_, Days::TUESDAY]
 model.address = 'address8'
 model.age = 186
 model.birthday = Date.iso8601('2016-03-13')
-model.birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+model.birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 model.name = 'name2'
 model.uid = 'uid2'
 
@@ -870,7 +870,7 @@ models[0].dependents[0] = Person.new
 models[0].dependents[0].address = 'address9'
 models[0].dependents[0].age = 49
 models[0].dependents[0].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[0].name = 'name3'
 models[0].dependents[0].uid = 'uid3'
 
@@ -878,7 +878,7 @@ models[0].dependents[1] = Person.new
 models[0].dependents[1].address = 'address0'
 models[0].dependents[1].age = 50
 models[0].dependents[1].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[1].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[1].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[1].name = 'name4'
 models[0].dependents[1].uid = 'uid4'
 
@@ -886,18 +886,18 @@ models[0].dependents[2] = Person.new
 models[0].dependents[2].address = 'address1'
 models[0].dependents[2].age = 51
 models[0].dependents[2].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[2].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[2].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[2].name = 'name5'
 models[0].dependents[2].uid = 'uid5'
 
-models[0].hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+models[0].hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 models[0].joining_day = Days::MONDAY
 models[0].salary = 84
 models[0].working_days = [Days::SUNDAY]
 models[0].address = 'address2'
 models[0].age = 254
 models[0].birthday = Date.iso8601('2016-03-13')
-models[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].name = 'name6'
 models[0].uid = 'uid6'
 
@@ -910,18 +910,18 @@ models[1].dependents[0] = Person.new
 models[1].dependents[0].address = 'address0'
 models[1].dependents[0].age = 50
 models[1].dependents[0].birthday = Date.iso8601('2016-03-13')
-models[1].dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[1].dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[1].dependents[0].name = 'name4'
 models[1].dependents[0].uid = 'uid4'
 
-models[1].hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+models[1].hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 models[1].joining_day = Days::MONDAY
 models[1].salary = 85
 models[1].working_days = [Days::MONDAY, Days::TUESDAY]
 models[1].address = 'address3'
 models[1].age = 255
 models[1].birthday = Date.iso8601('2016-03-13')
-models[1].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[1].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[1].name = 'name7'
 models[1].uid = 'uid7'
 
@@ -961,7 +961,7 @@ models[0].dependents[0] = Person.new
 models[0].dependents[0].address = 'address9'
 models[0].dependents[0].age = 49
 models[0].dependents[0].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[0].name = 'name3'
 models[0].dependents[0].uid = 'uid3'
 
@@ -969,7 +969,7 @@ models[0].dependents[1] = Person.new
 models[0].dependents[1].address = 'address0'
 models[0].dependents[1].age = 50
 models[0].dependents[1].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[1].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[1].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[1].name = 'name4'
 models[0].dependents[1].uid = 'uid4'
 
@@ -977,18 +977,18 @@ models[0].dependents[2] = Person.new
 models[0].dependents[2].address = 'address1'
 models[0].dependents[2].age = 51
 models[0].dependents[2].birthday = Date.iso8601('2016-03-13')
-models[0].dependents[2].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].dependents[2].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].dependents[2].name = 'name5'
 models[0].dependents[2].uid = 'uid5'
 
-models[0].hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+models[0].hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 models[0].joining_day = Days::MONDAY
 models[0].salary = 84
 models[0].working_days = [Days::SUNDAY]
 models[0].address = 'address2'
 models[0].age = 254
 models[0].birthday = Date.iso8601('2016-03-13')
-models[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[0].name = 'name6'
 models[0].uid = 'uid6'
 
@@ -1001,18 +1001,18 @@ models[1].dependents[0] = Person.new
 models[1].dependents[0].address = 'address0'
 models[1].dependents[0].age = 50
 models[1].dependents[0].birthday = Date.iso8601('2016-03-13')
-models[1].dependents[0].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[1].dependents[0].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[1].dependents[0].name = 'name4'
 models[1].dependents[0].uid = 'uid4'
 
-models[1].hired_at = DateTime.httpdate('Mon, 15 Jun 2009 20:45:30 GMT')
+models[1].hired_at = DateTimeHelper.from_rfc1123('Mon, 15 Jun 2009 20:45:30 GMT')
 models[1].joining_day = Days::MONDAY
 models[1].salary = 85
 models[1].working_days = [Days::MONDAY, Days::TUESDAY]
 models[1].address = 'address3'
 models[1].age = 255
 models[1].birthday = Date.iso8601('2016-03-13')
-models[1].birthtime = DateTime.rfc3339('2016-03-13T12:52:32.123Z')
+models[1].birthtime = DateTimeHelper.from_rfc3339('2016-03-13T12:52:32.123Z')
 models[1].name = 'name7'
 models[1].uid = 'uid7'
 
@@ -1171,7 +1171,7 @@ def send_optional_unix_date_time_in_body(date_time: nil)
 ## Example Usage
 
 ```ruby
-date_time = Time.at(1484719381).utc.to_datetime
+date_time = DateTimeHelper.from_unix(1484719381)
 
 result = body_params_controller.send_optional_unix_date_time_in_body(date_time: date_time)
 ```
@@ -1196,7 +1196,7 @@ def send_optional_rfc1123_in_body(body)
 ## Example Usage
 
 ```ruby
-body = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
+body = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
 
 result = body_params_controller.send_optional_rfc1123_in_body(body)
 ```
@@ -1245,7 +1245,7 @@ def send_optional_unix_time_stamp_in_model_body(date_time)
 
 ```ruby
 date_time = UnixDateTime.new
-date_time.date_time = Time.at(1484719381).utc.to_datetime
+date_time.date_time = DateTimeHelper.from_unix(1484719381)
 
 result = body_params_controller.send_optional_unix_time_stamp_in_model_body(date_time)
 ```
@@ -1272,7 +1272,7 @@ def send_optional_unix_time_stamp_in_nested_model_body(date_time)
 ```ruby
 date_time = SendUnixDateTime.new
 date_time.date_time = UnixDateTime.new
-date_time.date_time.date_time = Time.at(1484719381).utc.to_datetime
+date_time.date_time.date_time = DateTimeHelper.from_unix(1484719381)
 
 result = body_params_controller.send_optional_unix_time_stamp_in_nested_model_body(date_time)
 ```
@@ -1299,7 +1299,7 @@ def send_rfc1123_date_time_in_nested_model(body)
 ```ruby
 body = SendRfc1123DateTime.new
 body.date_time = ModelWithOptionalRfc1123DateTime.new
-body.date_time.date_time = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
+body.date_time.date_time = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
 
 result = body_params_controller.send_rfc1123_date_time_in_nested_model(body)
 ```
@@ -1325,7 +1325,7 @@ def send_rfc1123_date_time_in_model(date_time)
 
 ```ruby
 date_time = ModelWithOptionalRfc1123DateTime.new
-date_time.date_time = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
+date_time.date_time = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
 
 result = body_params_controller.send_rfc1123_date_time_in_model(date_time)
 ```
@@ -1351,7 +1351,7 @@ def send_optional_datetime_in_model(body)
 
 ```ruby
 body = ModelWithOptionalRfc3339DateTime.new
-body.date_time = DateTime.rfc3339('1994-02-13T14:01:54.9571247Z')
+body.date_time = DateTimeHelper.from_rfc3339('1994-02-13T14:01:54.9571247Z')
 
 result = body_params_controller.send_optional_datetime_in_model(body)
 ```
@@ -1378,7 +1378,7 @@ def send_rfc339_date_time_in_nested_models(body)
 ```ruby
 body = SendRfc339DateTime.new
 body.date_time = ModelWithOptionalRfc3339DateTime.new
-body.date_time.date_time = DateTime.rfc3339('1994-02-13T14:01:54.9571247Z')
+body.date_time.date_time = DateTimeHelper.from_rfc3339('1994-02-13T14:01:54.9571247Z')
 
 result = body_params_controller.send_rfc339_date_time_in_nested_models(body)
 ```
