@@ -721,7 +721,7 @@ module Tester
       validate_response(_response)
 
       # Return appropriate response type.
-      DateTime.rfc3339(_response.raw_body)
+      DateTimeHelper.from_rfc3339(_response.raw_body)
     end
 
     # TODO: type endpoint description here
@@ -754,7 +754,7 @@ module Tester
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      decoded.map { |element| DateTime.rfc3339(element) }
+      decoded.map { |element| DateTimeHelper.from_rfc3339(element) }
     end
 
     # TODO: type endpoint description here
@@ -847,7 +847,7 @@ module Tester
       validate_response(_response)
 
       # Return appropriate response type.
-      DateTime.httpdate(_response.raw_body)
+      DateTimeHelper.from_rfc1123(_response.raw_body)
     end
 
     # TODO: type endpoint description here
@@ -869,7 +869,7 @@ module Tester
       validate_response(_response)
 
       # Return appropriate response type.
-      Time.at(_response.raw_body.to_i).utc.to_datetime
+      DateTimeHelper.from_unix(_response.raw_body)
     end
 
     # TODO: type endpoint description here
@@ -902,7 +902,7 @@ module Tester
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      decoded.map { |element| DateTime.httpdate(element) }
+      decoded.map { |element| DateTimeHelper.from_rfc1123(element) }
     end
 
     # TODO: type endpoint description here
@@ -935,7 +935,7 @@ module Tester
 
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_response.raw_body)
-      decoded.map { |element| Time.at(element).utc.to_datetime }
+      decoded.map { |element| DateTimeHelper.from_unix(element) }
     end
 
     # TODO: type endpoint description here

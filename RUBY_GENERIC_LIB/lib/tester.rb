@@ -14,6 +14,7 @@ require_relative 'tester/client.rb'
 
 # Utilities
 require_relative 'tester/utilities/file_wrapper.rb'
+require_relative 'tester/utilities/date_time_helper.rb'
 
 # Http
 require_relative 'tester/http/http_call_back.rb'

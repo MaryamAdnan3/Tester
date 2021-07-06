@@ -21,9 +21,6 @@ module Tester
     def initialize(date_time = nil,
                    additional_properties = {})
       @date_time = date_time
-      def date_time.to_s
-        httpdate
-      end
 
       # Add additional model properties to the instance.
       additional_properties.each do |_name, _value|
@@ -36,7 +33,8 @@ module Tester
       return nil unless hash
 
       # Extract variables from the hash.
-      date_time = DateTime.httpdate(hash['dateTime']) if hash['dateTime']
+      date_time = DateTimeHelper.from_rfc1123(hash['dateTime']) if
+        hash['dateTime']
 
       # Clean out expected properties from Hash.
       names.each_value { |k| hash.delete(k) }
@@ -44,6 +42,10 @@ module Tester
       # Create object from extracted values.
       ModelWithOptionalRfc1123DateTime.new(date_time,
                                            hash)
+    end
+
+    def to_date_time
+      DateTimeHelper.to_rfc1123(date_time)
     end
   end
 end

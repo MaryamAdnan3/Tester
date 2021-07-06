@@ -93,7 +93,8 @@ module Tester
       address = hash['address']
       age = hash['age']
       birthday = hash['birthday']
-      birthtime = APIHelper.rfc3339(hash['birthtime']) if hash['birthtime']
+      birthtime = DateTimeHelper.from_rfc3339(hash['birthtime']) if
+        hash['birthtime']
       name = hash['name']
       uid = hash['uid']
       person_type = hash['personType']
@@ -110,6 +111,10 @@ module Tester
                  uid,
                  person_type,
                  hash)
+    end
+
+    def to_birthtime
+      DateTimeHelper.to_rfc3339(birthtime)
     end
   end
 end

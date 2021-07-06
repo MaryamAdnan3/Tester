@@ -189,7 +189,7 @@ class FormParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_send_unix_date_time
   def test_send_unix_date_time()
     # Parameters for the API call
-    datetime = Time.at(1484719381).utc.to_datetime
+    datetime = DateTimeHelper.from_unix(1484719381)
 
     # Perform the API call through the SDK function
     result = @controller.send_unix_date_time(datetime)
@@ -209,7 +209,7 @@ class FormParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_send_rfc1123_date_time
   def test_send_rfc1123_date_time()
     # Parameters for the API call
-    datetime = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
+    datetime = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
 
     # Perform the API call through the SDK function
     result = @controller.send_rfc1123_date_time(datetime)
@@ -229,7 +229,7 @@ class FormParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_send_rfc3339_date_time
   def test_send_rfc3339_date_time()
     # Parameters for the API call
-    datetime = DateTime.rfc3339('1994-02-13T14:01:54.9571247Z')
+    datetime = DateTimeHelper.from_rfc3339('1994-02-13T14:01:54.9571247Z')
 
     # Perform the API call through the SDK function
     result = @controller.send_rfc3339_date_time(datetime)
@@ -251,7 +251,7 @@ class FormParamsControllerTests < ControllerTestBase
     # Parameters for the API call
     datetimes = APIHelper.json_deserialize(
       '[1484719381,1484719381]'
-    ).map { |element| Time.at(element).utc.to_datetime }
+    ).map { |element| DateTimeHelper.from_unix(element) }
 
     # Perform the API call through the SDK function
     result = @controller.send_unix_date_time_array(datetimes)
@@ -273,7 +273,7 @@ class FormParamsControllerTests < ControllerTestBase
     # Parameters for the API call
     datetimes = APIHelper.json_deserialize(
       '["Sun, 06 Nov 1994 08:49:37 GMT","Sun, 06 Nov 1994 08:49:37 GMT"]'
-    ).map { |element| DateTime.httpdate(element) }
+    ).map { |element| DateTimeHelper.from_rfc1123(element) }
 
     # Perform the API call through the SDK function
     result = @controller.send_rfc1123_date_time_array(datetimes)
@@ -614,7 +614,7 @@ class FormParamsControllerTests < ControllerTestBase
     # Parameters for the API call
     datetimes = APIHelper.json_deserialize(
       '["1994-02-13T14:01:54.9571247Z","1994-02-13T14:01:54.9571247Z"]'
-    ).map { |element| DateTime.rfc3339(element) }
+    ).map { |element| DateTimeHelper.from_rfc3339(element) }
 
     # Perform the API call through the SDK function
     result = @controller.send_rfc3339_date_time_array(datetimes)
@@ -1260,7 +1260,7 @@ class FormParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_send_optional_unix_time_stamp_in_body
   def test_send_optional_unix_time_stamp_in_body()
     # Parameters for the API call
-    date_time = Time.at(1484719381).utc.to_datetime
+    date_time = DateTimeHelper.from_unix(1484719381)
 
     # Perform the API call through the SDK function
     result = @controller.send_optional_unix_date_time_in_body(date_time: date_time)
@@ -1280,7 +1280,7 @@ class FormParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_send_optional_rfc_1123_in_body
   def test_send_optional_rfc_1123_in_body()
     # Parameters for the API call
-    body = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
+    body = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
 
     # Perform the API call through the SDK function
     result = @controller.send_optional_rfc1123_in_body(body)
@@ -1300,7 +1300,7 @@ class FormParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_sending_datetime_as_optional_in_plain_text_body
   def test_sending_datetime_as_optional_in_plain_text_body()
     # Parameters for the API call
-    body = DateTime.rfc3339('1994-02-13T14:01:54.9571247Z')
+    body = DateTimeHelper.from_rfc3339('1994-02-13T14:01:54.9571247Z')
 
     # Perform the API call through the SDK function
     result = @controller.send_datetime_optional_in_endpoint(body: body)

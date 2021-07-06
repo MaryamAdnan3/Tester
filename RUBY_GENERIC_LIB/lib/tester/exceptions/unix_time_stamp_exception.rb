@@ -28,9 +28,9 @@ module Tester
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @date_time = Time.at(hash['dateTime']).utc.to_datetime if
+      @date_time = DateTimeHelper.from_unix(hash['dateTime']) if
         hash['dateTime']
-      @date_time1 = Time.at(hash['dateTime1']).utc.to_datetime if
+      @date_time1 = DateTimeHelper.from_unix(hash['dateTime1']) if
         hash['dateTime1']
     end
   end

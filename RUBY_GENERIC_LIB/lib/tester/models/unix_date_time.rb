@@ -21,13 +21,6 @@ module Tester
     def initialize(date_time = nil,
                    additional_properties = {})
       @date_time = date_time
-      def date_time.to_s
-        to_time.utc.to_i.to_s
-      end
-
-      def date_time.to_json(_options = {})
-        to_time.utc.to_i.to_json
-      end
 
       # Add additional model properties to the instance.
       additional_properties.each do |_name, _value|
@@ -40,7 +33,7 @@ module Tester
       return nil unless hash
 
       # Extract variables from the hash.
-      date_time = Time.at(hash['dateTime']).utc.to_datetime if
+      date_time = DateTimeHelper.from_unix(hash['dateTime']) if
         hash['dateTime']
 
       # Clean out expected properties from Hash.
@@ -49,6 +42,10 @@ module Tester
       # Create object from extracted values.
       UnixDateTime.new(date_time,
                        hash)
+    end
+
+    def to_date_time
+      DateTimeHelper.to_unix(date_time)
     end
   end
 end

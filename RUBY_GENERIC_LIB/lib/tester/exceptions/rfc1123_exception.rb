@@ -28,8 +28,10 @@ module Tester
     # @param [Hash] The deserialized response sent by the server in the
     # response body.
     def unbox(hash)
-      @date_time = DateTime.httpdate(hash['dateTime']) if hash['dateTime']
-      @date_time1 = DateTime.httpdate(hash['dateTime1']) if hash['dateTime1']
+      @date_time = DateTimeHelper.from_rfc1123(hash['dateTime']) if
+        hash['dateTime']
+      @date_time1 = DateTimeHelper.from_rfc1123(hash['dateTime1']) if
+        hash['dateTime1']
     end
   end
 end

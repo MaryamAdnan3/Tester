@@ -45,13 +45,6 @@ module Tester
                    additional_properties = {})
       @promoted_at = promoted_at
       @assistant = assistant
-      def promoted_at.to_s
-        to_time.utc.to_i.to_s
-      end
-
-      def promoted_at.to_json(_options = {})
-        to_time.utc.to_i.to_json
-      end
 
       # Add additional model properties to the instance.
       additional_properties.each do |_name, _value|
@@ -83,7 +76,8 @@ module Tester
       address = hash['address']
       age = hash['age']
       birthday = hash['birthday']
-      birthtime = APIHelper.rfc3339(hash['birthtime']) if hash['birthtime']
+      birthtime = DateTimeHelper.from_rfc3339(hash['birthtime']) if
+        hash['birthtime']
       department = hash['department']
       # Parameter is an array, so we need to iterate through it
       dependents = nil
@@ -93,10 +87,11 @@ module Tester
           dependents << (Person.from_hash(structure) if structure)
         end
       end
-      hired_at = DateTime.httpdate(hash['hiredAt']) if hash['hiredAt']
+      hired_at = DateTimeHelper.from_rfc1123(hash['hiredAt']) if
+        hash['hiredAt']
       joining_day = hash['joiningDay'] ||= Days::MONDAY
       name = hash['name']
-      promoted_at = Time.at(hash['promotedAt']).utc.to_datetime if
+      promoted_at = DateTimeHelper.from_unix(hash['promotedAt']) if
         hash['promotedAt']
       salary = hash['salary']
       uid = hash['uid']
@@ -126,6 +121,10 @@ module Tester
                boss,
                person_type,
                hash)
+    end
+
+    def to_promoted_at
+      DateTimeHelper.to_unix(promoted_at)
     end
   end
 end

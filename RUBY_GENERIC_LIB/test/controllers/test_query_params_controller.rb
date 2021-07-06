@@ -99,8 +99,8 @@ class QueryParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_rfc1123_datetime_as_optional_in_query
   def test_rfc1123_datetime_as_optional_in_query()
     # Parameters for the API call
-    date_time = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
-    date_time1 = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
+    date_time = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
+    date_time1 = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
 
     # Perform the API call through the SDK function
     result = @controller.rfc1123_datetime_as_optional(date_time, date_time1: date_time1)
@@ -120,8 +120,8 @@ class QueryParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_rfc3339_as_optional_in_query
   def test_rfc3339_as_optional_in_query()
     # Parameters for the API call
-    date_time = DateTime.rfc3339('1994-02-13T14:01:54.9571247Z')
-    date_time1 = DateTime.rfc3339('1994-02-13T14:01:54.9571247Z')
+    date_time = DateTimeHelper.from_rfc3339('1994-02-13T14:01:54.9571247Z')
+    date_time1 = DateTimeHelper.from_rfc3339('1994-02-13T14:01:54.9571247Z')
 
     # Perform the API call through the SDK function
     result = @controller.rfc3339_datetime_as_optional(date_time, date_time1: date_time1)
@@ -183,8 +183,8 @@ class QueryParamsControllerTests < ControllerTestBase
   # Todo: Add description for test test_unixtimestamp_as_optional_in_query
   def test_unixtimestamp_as_optional_in_query()
     # Parameters for the API call
-    date_time = Time.at(1484719381).utc.to_datetime
-    date_time1 = Time.at(1484719381).utc.to_datetime
+    date_time = DateTimeHelper.from_unix(1484719381)
+    date_time1 = DateTimeHelper.from_unix(1484719381)
 
     # Perform the API call through the SDK function
     result = @controller.unixdatetime_as_optional(date_time, date_time1: date_time1)

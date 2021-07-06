@@ -40,8 +40,10 @@ module Tester
       return nil unless hash
 
       # Extract variables from the hash.
-      date_time = APIHelper.rfc3339(hash['dateTime']) if hash['dateTime']
-      date_time1 = APIHelper.rfc3339(hash['dateTime1']) if hash['dateTime1']
+      date_time = DateTimeHelper.from_rfc3339(hash['dateTime']) if
+        hash['dateTime']
+      date_time1 = DateTimeHelper.from_rfc3339(hash['dateTime1']) if
+        hash['dateTime1']
 
       # Clean out expected properties from Hash.
       names.each_value { |k| hash.delete(k) }
@@ -50,6 +52,14 @@ module Tester
       AddRfc3339DatetimeInGlobalException.new(date_time,
                                               date_time1,
                                               hash)
+    end
+
+    def to_date_time
+      DateTimeHelper.to_rfc3339(date_time)
+    end
+
+    def to_date_time1
+      DateTimeHelper.to_rfc3339(date_time1)
     end
   end
 end

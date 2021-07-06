@@ -82,9 +82,6 @@ module Tester
       @salary = salary
       @working_days = working_days
       @boss = boss
-      def hired_at.to_s
-        httpdate
-      end
 
       # Add additional model properties to the instance.
       additional_properties.each do |_name, _value|
@@ -114,7 +111,8 @@ module Tester
       address = hash['address']
       age = hash['age']
       birthday = hash['birthday']
-      birthtime = APIHelper.rfc3339(hash['birthtime']) if hash['birthtime']
+      birthtime = DateTimeHelper.from_rfc3339(hash['birthtime']) if
+        hash['birthtime']
       department = hash['department']
       # Parameter is an array, so we need to iterate through it
       dependents = nil
@@ -124,7 +122,8 @@ module Tester
           dependents << (Person.from_hash(structure) if structure)
         end
       end
-      hired_at = DateTime.httpdate(hash['hiredAt']) if hash['hiredAt']
+      hired_at = DateTimeHelper.from_rfc1123(hash['hiredAt']) if
+        hash['hiredAt']
       joining_day = hash['joiningDay'] ||= Days::MONDAY
       name = hash['name']
       salary = hash['salary']
@@ -152,6 +151,10 @@ module Tester
                    boss,
                    person_type,
                    hash)
+    end
+
+    def to_hired_at
+      DateTimeHelper.to_rfc1123(hired_at)
     end
   end
 end

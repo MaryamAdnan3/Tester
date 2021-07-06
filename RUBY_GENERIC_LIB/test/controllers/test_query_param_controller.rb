@@ -83,7 +83,7 @@ class QueryParamControllerTests < ControllerTestBase
     # Parameters for the API call
     datetimes = APIHelper.json_deserialize(
       '[1484719381,1484719381]'
-    ).map { |element| Time.at(element).utc.to_datetime }
+    ).map { |element| DateTimeHelper.from_unix(element) }
 
     # Perform the API call through the SDK function
     result = @controller.unix_date_time_array(datetimes)
@@ -103,7 +103,7 @@ class QueryParamControllerTests < ControllerTestBase
   # Todo: Add description for test test_unix_date_time
   def test_unix_date_time()
     # Parameters for the API call
-    datetime = Time.at(1484719381).utc.to_datetime
+    datetime = DateTimeHelper.from_unix(1484719381)
 
     # Perform the API call through the SDK function
     result = @controller.unix_date_time(datetime)
@@ -123,7 +123,7 @@ class QueryParamControllerTests < ControllerTestBase
   # Todo: Add description for test test_rfc1123_date_time
   def test_rfc1123_date_time()
     # Parameters for the API call
-    datetime = DateTime.httpdate('Sun, 06 Nov 1994 08:49:37 GMT')
+    datetime = DateTimeHelper.from_rfc1123('Sun, 06 Nov 1994 08:49:37 GMT')
 
     # Perform the API call through the SDK function
     result = @controller.rfc1123_date_time(datetime)
@@ -145,7 +145,7 @@ class QueryParamControllerTests < ControllerTestBase
     # Parameters for the API call
     datetimes = APIHelper.json_deserialize(
       '["Sun, 06 Nov 1994 08:49:37 GMT","Sun, 06 Nov 1994 08:49:37 GMT"]'
-    ).map { |element| DateTime.httpdate(element) }
+    ).map { |element| DateTimeHelper.from_rfc1123(element) }
 
     # Perform the API call through the SDK function
     result = @controller.rfc1123_date_time_array(datetimes)
@@ -167,7 +167,7 @@ class QueryParamControllerTests < ControllerTestBase
     # Parameters for the API call
     datetimes = APIHelper.json_deserialize(
       '["1994-02-13T14:01:54.9571247Z","1994-02-13T14:01:54.9571247Z"]'
-    ).map { |element| DateTime.rfc3339(element) }
+    ).map { |element| DateTimeHelper.from_rfc3339(element) }
 
     # Perform the API call through the SDK function
     result = @controller.rfc3339_date_time_array(datetimes)
@@ -187,7 +187,7 @@ class QueryParamControllerTests < ControllerTestBase
   # Todo: Add description for test test_rfc3339_date_time
   def test_rfc3339_date_time()
     # Parameters for the API call
-    datetime = DateTime.rfc3339('1994-02-13T14:01:54.9571247Z')
+    datetime = DateTimeHelper.from_rfc3339('1994-02-13T14:01:54.9571247Z')
 
     # Perform the API call through the SDK function
     result = @controller.rfc3339_date_time(datetime)
